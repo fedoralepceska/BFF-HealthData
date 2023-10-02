@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Server Side ",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index"
+  },
+  "author": "Fedora Lepcheska",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.4.0",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "express-http-proxy": "^1.6.3",
+    "http": "^0.0.0",
+    "https": "^1.0.0"
+  }
+}

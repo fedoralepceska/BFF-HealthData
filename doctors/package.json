@@ -1,0 +1,14 @@
+{
+  "name": "doctors",
+  "version": "1.0.0",
+  "description": "Express for Doctors",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index"
+  },
+  "author": "Fedora Lepcheska",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

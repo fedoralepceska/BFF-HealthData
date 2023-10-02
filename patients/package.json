@@ -1,0 +1,14 @@
+{
+  "name": "express-thesis",
+  "version": "1.0.0",
+  "description": "Directory for Patient Data",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index"
+  },
+  "author": "Fedora Lepcheska",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
