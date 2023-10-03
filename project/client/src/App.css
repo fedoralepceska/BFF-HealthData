@@ -1,5 +1,9 @@
 .app {
-  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #f0f0f0; /* Adjust the background color as needed */
 }
 
 .app-renderer {
@@ -13,20 +17,18 @@ button {
   cursor: pointer;
   margin-right: 15px;
   padding: 10px;
-  color: #0062cc;
+  color: mediumslateblue;
   background-color: transparent;
   background-image: none;
   border: 1px solid transparent;
-  border-color: #0062cc;
+  border-color: black;
   font-weight: bold;
   border-radius: .25rem;
 }
 
 button:hover, button:active {
   color: #fff;
-  background-color: #0062cc;
-  border-color: #0062cc;
-  box-shadow: 0 0 0 0.2rem rgba(0,123,255,.5);
+  background-color: mediumslateblue;
 }
 
 /* Style for the navigation menu */
@@ -35,8 +37,8 @@ button:hover, button:active {
   padding: 0;
   margin: 0;
   display: flex;
-  justify-content: space-around; /* Adjust this to change the alignment */
-  background-color: aliceblue; /* Background color of the menu */
+  gap: 20px;
+  justify-content: flex-end; /* Adjust this to change the alignment */
   color: black; /* Text color */
   font-size: 18px; /* Font size */
   font-weight: bold; /* Font weight */
@@ -51,6 +53,11 @@ button:hover, button:active {
 
 /* Change background color on hover */
 .navigation-menu li:hover {
-  background-color: #555; /* Background color on hover */
+  background-color: mediumslateblue; /* Background color on hover */
+}
+
+.logo {
+  max-width: 100px; /* Adjust the maximum width of your logo */
+  height: 20px;
 }
 
