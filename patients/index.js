@@ -9,10 +9,10 @@ const app = express();
 const patientsDataPath = path.join(__dirname, 'data', 'patients.json');
 const patients = JSON.parse(fs.readFileSync(patientsDataPath, 'utf8'));
 
-app.get('/patients', function(req, res, next) {
+app.get('/patients', async function(req, res, next) {
   const Patient = mongoose.connection.collection('patient'); // Get the patients collection
-  debugger;
-  console.log(Patient)
+  const patients = await Patient.find({});
+  console.log(patients)
   Patient.find({}).toArray((err, patients) => {
     if (err) {
       console.error(err);
