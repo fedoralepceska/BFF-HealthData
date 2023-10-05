@@ -2,6 +2,7 @@ var http = require('http');
 const express = require('express');
 const fs = require("fs");
 const path = require("path");
+const mongoose = require('mongoose');
 
 const app = express();
 
@@ -9,7 +10,17 @@ const patientsDataPath = path.join(__dirname, 'data', 'patients.json');
 const patients = JSON.parse(fs.readFileSync(patientsDataPath, 'utf8'));
 
 app.get('/patients', function(req, res, next) {
-  res.json(patients);
+  const Patient = mongoose.connection.collection('patient'); // Get the patients collection
+  debugger;
+  console.log(Patient)
+  Patient.find({}).toArray((err, patients) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Internal server error' });
+    } else {
+      res.json(patients);
+    }
+  });
 });
 
 app.delete('/patients/:id', (req, res) => {

@@ -182,7 +182,7 @@ function App() {
 
   return (
       <div className="app">
-        <img src="./logo.png" alt="Logo" className="logo" />
+        <img src="/images/logo.png" alt="Logo" className="logo" />
         <ul className="navigation-menu">
           <li onClick={getPatients}>Patients</li>
           <li onClick={getDoctors}>Doctors</li>

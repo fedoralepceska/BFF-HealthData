@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
-  background-color: #f0f0f0; /* Adjust the background color as needed */
+  background-color: #90BAFCFF; /* Adjust the background color as needed */
 }
 
 .app-renderer {
@@ -21,7 +21,6 @@ button {
   background-color: transparent;
   background-image: none;
   border: 1px solid transparent;
-  border-color: black;
   font-weight: bold;
   border-radius: .25rem;
 }
@@ -39,7 +38,7 @@ button:hover, button:active {
   display: flex;
   gap: 20px;
   justify-content: flex-end; /* Adjust this to change the alignment */
-  color: black; /* Text color */
+  color: white; /* Text color */
   font-size: 18px; /* Font size */
   font-weight: bold; /* Font weight */
 }
@@ -51,13 +50,8 @@ button:hover, button:active {
   transition: background-color 0.3s; /* Add a smooth transition effect */
 }
 
-/* Change background color on hover */
-.navigation-menu li:hover {
-  background-color: mediumslateblue; /* Background color on hover */
-}
-
 .logo {
-  max-width: 100px; /* Adjust the maximum width of your logo */
-  height: 20px;
+  max-width: 80px; /* Adjust the maximum width of your logo */
+  max-height: 80px;
 }
 
