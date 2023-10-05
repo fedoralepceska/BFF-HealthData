@@ -3,25 +3,24 @@ const express = require('express');
 const fs = require("fs");
 const path = require("path");
 const mongoose = require('mongoose');
+const Patient = require('./model'); // Import your Mongoose model
+
 
 const app = express();
 
 const patientsDataPath = path.join(__dirname, 'data', 'patients.json');
 const patients = JSON.parse(fs.readFileSync(patientsDataPath, 'utf8'));
 
-app.get('/patients', async function(req, res, next) {
-  const Patient = mongoose.connection.collection('patient'); // Get the patients collection
-  const patients = await Patient.find({});
-  console.log(patients)
-  Patient.find({}).toArray((err, patients) => {
-    if (err) {
-      console.error(err);
-      res.status(500).json({ error: 'Internal server error' });
-    } else {
-      res.json(patients);
-    }
-  });
+app.get('/patients', async function (req, res, next) {
+  try {
+    const patients = await Patient.find({});
+    res.json(patients);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
+
 
 app.delete('/patients/:id', (req, res) => {
   const patientIdToDelete = req.params.id;
