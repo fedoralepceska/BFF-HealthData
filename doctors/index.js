@@ -3,33 +3,40 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const app = express();
+const Doctor = require('./models/Doctor'); // Import the patient model
+const db = require('./db');
 
 app.use(express.json());
 
-const doctorsDataPath = path.join(__dirname, 'data', 'doctors.json');
-const doctors = JSON.parse(fs.readFileSync(doctorsDataPath, 'utf8'));
 
-app.get('/doctors', function(req, res, next) {
-  // Simply send the response with doctors data
-  res.json(doctors);
+app.get('/doctors', async (req, res) => {
+  try {
+    // Use the "Doctor" model to query the "patients" collection in the "doctorsDB" database
+    const doctors = await Doctor.find({});
+    res.json(doctors);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
-app.delete('/doctors/:id', (req, res) => {
-  const doctorIdToDelete = req.params.id;
 
-  // Find the index of the doctor to delete in the doctors array
-  const doctorIndex = doctors.findIndex((doctor) => doctor.id.toString() === doctorIdToDelete);
+app.delete('/doctors/:id', async (req, res) => {
+  try {
+    const patientIdToDelete = req.params.id;
 
-  if (doctorIndex !== -1) {
-    // Remove the doctor from the array
-    doctors.splice(doctorIndex, 1);
+    // Use the "Doctor" model to find the doctor by ID and remove it
+    const deletedDoctor = await Doctor.findByIdAndRemove(doctorIdToDelete);
 
-    // Write the updated data back to the doctors.json file
-    fs.writeFileSync(doctorsDataPath, JSON.stringify(doctors, null, 2));
+    if (!deletedDoctor) {
+      // If the doctor with the provided ID does not exist, return a 404 Not Found response
+      return res.status(404).json({ error: 'Doctor not found' });
+    }
 
-    res.status(200).json({ message: 'Doctor deleted successfully' });
-  } else {
-    res.status(404).json({ message: 'Doctor not found' });
+    res.json({ message: 'Doctor deleted successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 

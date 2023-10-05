@@ -5,7 +5,7 @@ const routes = require('./src/routes');
 const app = express();
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/healthdata', {
+mongoose.connect('mongodb://localhost/healthdata', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });

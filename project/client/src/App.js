@@ -182,12 +182,14 @@ function App() {
 
   return (
       <div className="app">
-        <img src="/images/logo.png" alt="Logo" className="logo" />
-        <ul className="navigation-menu">
-          <li onClick={getPatients}>Patients</li>
-          <li onClick={getDoctors}>Doctors</li>
-          <li onClick={getPatientsAndDoctorsData}>Patients + Doctors</li>
-        </ul>
+        <div className="menu">
+          <img src="/images/logo.png" alt="Logo" className="logo" />
+          <ul className="navigation-menu">
+            <li onClick={getPatients}>Patients</li>
+            <li onClick={getDoctors}>Doctors</li>
+            <li onClick={getPatientsAndDoctorsData}>Patients + Doctors</li>
+          </ul>
+        </div>
 
         {data.length > 0 && (
             <div className="app-renderer">
@@ -195,7 +197,10 @@ function App() {
                 <thead>
                 <tr>
                   {filterColumns().map((column, index) => (
-                      <th key={column}>{displayColumns[index]}</th>
+                      // Skip the first column (index 0)
+                      index !== 0 && (
+                          <th key={column}>{displayColumns[index]}</th>
+                      )
                   ))}
                   <th>Action</th>
                 </tr>
@@ -204,10 +209,13 @@ function App() {
                 {data.map((item, rowIndex) => (
                     <tr key={rowIndex}>
                       {filterColumns().map((column, colIndex) => (
-                          <td key={column + rowIndex}>{item[column]}</td>
+                          // Skip the first column (index 0)
+                          colIndex !== 0 && (
+                              <td key={column + rowIndex}>{item[column]}</td>
+                          )
                       ))}
                       <td>
-                        <button onClick={() => deleteRow(item.id)}>
+                        <button onClick={() => deleteRow(item._id)}>
                           <FontAwesomeIcon icon={faTrash} />
                         </button>
                       </td>
